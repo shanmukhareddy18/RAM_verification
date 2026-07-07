@@ -35,7 +35,7 @@ class ram_driver;
         vif.drv_cb.address<=0;
         mbx_dr.put(drv_trans);
       repeat(1)@(vif.drv_cb)
-        $display("DRIVER DRIVING DATA data_in=%0h,write_enb=%0d,read_enb=%0d,address=%0h",drv_trans.data_in,drv_trans.write_enb,drv_trans.read_enb,drv_trans.address,$time);
+          $display("from driver data_in=%0h,write_enb=%0d,read_enb=%0d,address=%0h",drv_trans.data_in,drv_trans.write_enb,drv_trans.read_enb,drv_trans.address,$time);
       end
       else
         repeat(1)@(vif.drv_cb)begin
@@ -44,7 +44,7 @@ class ram_driver;
           vif.drv_cb.read_enb<=drv_trans.read_enb;
         vif.drv_cb.address<=drv_trans.address;
         repeat(1)@(vif.drv_cb)
-        $display("DRIVER WRITE OPERATION DRIVING DATA TO INTERFACE data_in=%0h,write_enb=%0d,read_enb=%0d,address=%0h",drv_trans.data_in,drv_trans.write_enb,drv_trans.read_enb,drv_trans.address,$time);
+            $display("from DRIVER  data_in=%0h,write_enb=%0d,read_enb=%0d,address=%0h",drv_trans.data_in,drv_trans.write_enb,drv_trans.read_enb,drv_trans.address,$time);
         vif.drv_cb.write_enb<=0;
         mbx_dr.put(drv_trans);
       drv_cg.sample();
