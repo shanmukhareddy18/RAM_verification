@@ -17,7 +17,7 @@ class ram_monitor;
           repeat(1)@(vif.mon_cb)begin
           mon_trans.data_out=vif.mon_cb.data_out;
             end
-        $display("MONITOR PASSING DATA TO SCOREBOARD data_out=%0h",mon_trans.data_out,$time);
+            $display("From MON to SCB data_out=%0h",mon_trans.data_out,$time);
         mbx_ms.put(mon_trans);
       mon_cg.sample();
         $display("OUTPUT FUNCTIONAL COVERAGE=%0d",mon_cg.get_coverage());
