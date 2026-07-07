@@ -9,7 +9,7 @@ class ram_generator;
     for(int i=0;i<`num_transactions;i++)begin
         assert(blueprint.randomize());
         mbx_gd.put(blueprint.copy());
-      $display("GENERATOR: data_in=%0h,write_enb=%0d,read_enb=%0d,address=%0h",blueprint.data_in,blueprint.write_enb,blueprint.read_enb,blueprint.address,$time);
+       $display("Generator : data_in=%0h,write_enb=%0d,read_enb=%0d,address=%0h",blueprint.data_in,blueprint.write_enb,blueprint.read_enb,blueprint.address,$time);
     end
   endtask
 endclass
