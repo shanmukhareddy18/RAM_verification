@@ -18,12 +18,12 @@ class ram_scoreboard;
       begin
       mbx_rs.get(ref2sb_trans);
       ref_mem[ref2sb_trans.address]=ref2sb_trans.data_out;
-      $display("SCB REF data_out=%0h,ADDRESS=%0h",ref_mem[ref2sb_trans.address],ref2sb_trans.address,$time);
+          $display("SCB (from reference) data_out=%0h,addr=%0h",ref_mem[ref2sb_trans.address],ref2sb_trans.address,$time);
       end
       begin
         mbx_ms.get(mon2sb_trans);
         mon_mem[mon2sb_trans.address]=mon2sb_trans.data_out;
-        $display("SCB MON data_out=%0h,ADDRESS=%0h",mon_mem[mon2sb_trans.address],mon2sb_trans.address,$time);
+          $display("SCB (from monitor) data_out=%0h,addr=%0h",mon_mem[mon2sb_trans.address],mon2sb_trans.address,$time);
     end
     join
     if(i!=(`num_transactions-1))
@@ -32,14 +32,14 @@ class ram_scoreboard;
   endtask
   task compare_report();
   if(ref_mem[ref2sb_trans.address]===mon_mem[mon2sb_trans.address])begin
-    $display("SCB REF data_out=%0h,MON data_out=%0h",ref_mem[ref2sb_trans.address],mon_mem[mon2sb_trans.address],$time);
+      $display("SCB (from reference) data_out=%0h,(from monitor) data_out=%0h",ref_mem[ref2sb_trans.address],mon_mem[mon2sb_trans.address],$time);
     ++MATCH;
-    $display("DATA MATCH SUCCESS.COUNT =%0d",MATCH);
+      $display("SUCCESS COUNT =%0d",MATCH);
   end
   else begin
-    $display("SCB REF data_out=%0h,MON data_out=%0h",ref_mem[ref2sb_trans.address],mon_mem[mon2sb_trans.address],$time);
+      $display("SCB (from reference) data_out=%0h,(from monitor) data_out=%0h",ref_mem[ref2sb_trans.address],mon_mem[mon2sb_trans.address],$time);
     ++MISMATCH;
-    $display("DATA MATCH FAIL.COUNT %0d",MISMATCH);
+      $display("FAIL COUNT %0d",MISMATCH);
   end
   endtask
 endclass
