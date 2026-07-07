@@ -16,11 +16,11 @@ class ram_reference_model;
        repeat(1)@(vif.ref_cb)begin
         if(ref_trans.write_enb)begin
         MEM[ref_trans.address]=ref_trans.data_in;
-        $display("REF MODEL DATA IN MEM[%0h]=%0h",ref_trans.address,MEM[ref_trans.address],$time);
+            $display("DATA IN to reference MEM[%0h]=%0h",ref_trans.address,MEM[ref_trans.address],$time);
         end
         if(ref_trans.read_enb)begin
         ref_trans.data_out=MEM[ref_trans.address];
-        $display("REF MODEL DATA OUT FROM MEM data_out=%0h",ref_trans.data_out,$time);
+            $display("DATA OUT from reference MEM data_out=%0h",ref_trans.data_out,$time);
         end
       mbx_rs.put(ref_trans);
     end
